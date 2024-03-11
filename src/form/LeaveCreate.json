@@ -1,0 +1,516 @@
+{
+  "version": "1",
+  "form": {
+    "key": "Screen",
+    "type": "Screen",
+    "props": {},
+    "css": {
+      "any": {
+        "object": {
+          "flexDirection": "column"
+        }
+      }
+    },
+    "children": [
+      {
+        "key": "RsContainer 1",
+        "type": "RsContainer",
+        "props": {},
+        "children": [
+          {
+            "key": "RsHeader 1",
+            "type": "RsHeader",
+            "props": {
+              "content": {
+                "value": "Xin nghỉ phép"
+              }
+            },
+            "css": {
+              "any": {
+                "object": {
+                  "textAlign": "center"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "employeeCode",
+        "type": "RsInput",
+        "props": {
+          "label": {
+            "value": "Người gửi"
+          },
+          "passwordMask": {
+            "value": false
+          }
+        },
+        "css": {
+          "any": {
+            "string": "font-weight: 600;\n  label::after {\n   content: \" (*)\";\n   color: red;\n }\n .rs-radio-checker {\n  label:after {\n  content: none;\n }\n }"
+          }
+        },
+        "schema": {
+          "validations": [
+            {
+              "key": "required",
+              "args": {
+                "message": "Đây là trường bắt buộc!"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "leaveRequestDateType",
+        "type": "RsRadioGroup",
+        "props": {
+          "items": {
+            "value": [
+              {
+                "value": "oneDay",
+                "label": "Một ngày"
+              },
+              {
+                "value": "mutiDay",
+                "label": "Nhiều ngày"
+              }
+            ]
+          },
+          "appearance": {
+            "value": "default"
+          },
+          "inline": {
+            "value": true
+          },
+          "label": {
+            "value": ""
+          },
+          "value": {
+            "value": "oneDay"
+          }
+        },
+        "css": {
+          "any": {
+            "string": " justify-content: center;\n display: flex;"
+          }
+        },
+        "wrapperCss": {
+          "any": {
+            "object": {
+              "width": "100%"
+            }
+          }
+        },
+        "schema": {
+          "validations": []
+        }
+      },
+      {
+        "key": "RsContainer 5",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "flexDirection": "row"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "dateOff",
+            "type": "RsDatePicker",
+            "props": {
+              "label": {
+                "value": "Ngày nghỉ"
+              },
+              "defaultOpen": {
+                "value": false
+              }
+            },
+            "schema": {
+              "validations": []
+            },
+            "css": {
+              "any": {
+                "string": "font-weight: bold;"
+              }
+            }
+          },
+          {
+            "key": "periodDateOff",
+            "type": "RsDropdown",
+            "props": {
+              "label": {
+                "value": "Buổi nghỉ"
+              },
+              "data": {
+                "value": [
+                  {
+                    "value": "fullDay",
+                    "label": "Cả ngày"
+                  },
+                  {
+                    "value": "morning",
+                    "label": "Buổi sáng"
+                  },
+                  {
+                    "value": "afternoon",
+                    "label": "Buổi chiều"
+                  }
+                ]
+              }
+            },
+            "css": {
+              "any": {
+                "string": "font-weight: bold;"
+              }
+            }
+          }
+        ],
+        "renderWhen": {
+          "value": "form.data.leaveRequestDateType=== \"oneDay\""
+        }
+      },
+      {
+        "key": "tabMitiDay",
+        "type": "RsContainer",
+        "props": {},
+        "children": [
+          {
+            "key": "RsContainer 6",
+            "type": "RsContainer",
+            "props": {},
+            "css": {
+              "any": {
+                "object": {
+                  "flexDirection": "row",
+                  "alignItems": "end"
+                }
+              }
+            },
+            "children": [
+              {
+                "key": "dateOffFrom",
+                "type": "RsDatePicker",
+                "props": {
+                  "limitEndYear": {
+                    "value": 0
+                  },
+                  "limitStartYear": {
+                    "value": 0
+                  },
+                  "label": {
+                    "value": "Từ ngày"
+                  }
+                },
+                "css": {
+                  "any": {
+                    "string": "font-weight: bold;"
+                  }
+                }
+              },
+              {
+                "key": "periodDateOffFrom",
+                "type": "RsDropdown",
+                "props": {
+                  "label": {
+                    "value": "Buổi nghỉ"
+                  },
+                  "data": {
+                    "value": [
+                      {
+                        "value": "fullDay",
+                        "label": "Cả ngày"
+                      },
+                      {
+                        "value": "morning",
+                        "label": "Buổi sáng"
+                      },
+                      {
+                        "label": "Buổi chiều",
+                        "value": "afternoon"
+                      }
+                    ]
+                  }
+                },
+                "css": {
+                  "any": {
+                    "string": "font-weight: bold;"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "key": "RsContainer 7",
+            "type": "RsContainer",
+            "props": {},
+            "css": {
+              "any": {
+                "object": {
+                  "flexDirection": "row",
+                  "alignItems": "end"
+                }
+              }
+            },
+            "children": [
+              {
+                "key": "dateOffTo",
+                "type": "RsDatePicker",
+                "props": {
+                  "showMeridian": {
+                    "value": false
+                  },
+                  "limitStartYear": {
+                    "value": 0
+                  },
+                  "limitEndYear": {
+                    "value": 0
+                  },
+                  "label": {
+                    "value": "Đến ngày"
+                  }
+                },
+                "css": {
+                  "any": {
+                    "string": "font-weight: bold;"
+                  }
+                }
+              },
+              {
+                "key": "periodDateOffTo",
+                "type": "RsDropdown",
+                "props": {
+                  "label": {
+                    "value": "Buổi nghỉ"
+                  },
+                  "data": {
+                    "value": [
+                      {
+                        "value": "fullDay",
+                        "label": "Cả ngày"
+                      },
+                      {
+                        "value": "morning",
+                        "label": "Buổi sáng"
+                      },
+                      {
+                        "value": "afternoon",
+                        "label": "Buổi chiều"
+                      }
+                    ]
+                  }
+                },
+                "css": {
+                  "any": {
+                    "string": "font-weight: bold;"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "renderWhen": {
+          "value": "form.data.leaveRequestDateType !== \"oneDay\""
+        }
+      },
+      {
+        "key": "divisionCode",
+        "type": "RsDropdown",
+        "props": {
+          "label": {
+            "value": "Phòng ban"
+          },
+          "data": {
+            "value": [
+              {
+                "value": "FES",
+                "label": "FES"
+              },
+              {
+                "value": "DTS",
+                "label": "DTS"
+              },
+              {
+                "value": "IES",
+                "label": "IES"
+              }
+            ]
+          },
+          "value": {
+            "value": "FES"
+          }
+        },
+        "css": {
+          "any": {
+            "string": "font-weight: 600;\n  label::after {\n   content: \" (*)\";\n   color: red;\n }\n .rs-radio-checker {\n  label:after {\n  content: none;\n }\n }"
+          }
+        },
+        "schema": {
+          "validations": [
+            {
+              "key": "required",
+              "args": {
+                "message": "Đây là trường bắt buộc!"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "personApprove",
+        "type": "RsInput",
+        "props": {
+          "label": {
+            "value": "Người duyệt"
+          }
+        },
+        "css": {
+          "any": {
+            "string": ""
+          }
+        },
+        "schema": {
+          "validations": []
+        }
+      },
+      {
+        "key": "cc",
+        "type": "RsInput",
+        "props": {
+          "label": {
+            "value": "CC"
+          }
+        }
+      },
+      {
+        "key": "bcc",
+        "type": "RsInput",
+        "props": {
+          "label": {
+            "value": "BCC"
+          }
+        }
+      },
+      {
+        "key": "leaveRequestType",
+        "type": "RsDropdown",
+        "props": {
+          "label": {
+            "value": "Loại nghỉ phép"
+          },
+          "data": {
+            "value": [
+              {
+                "value": "annualLeave",
+                "label": "Nghỉ phép năm"
+              },
+              {
+                "value": "unpaidLeave",
+                "label": "Nghỉ không lương"
+              },
+              {
+                "value": " compensatoryLeave",
+                "label": "Nghỉ bù dự án"
+              }
+            ]
+          },
+          "placeholder": {
+            "value": ""
+          },
+          "value": {
+            "value": "annualLeave"
+          }
+        },
+        "css": {
+          "any": {
+            "string": "font-weight: 600;\n  label::after {\n   content: \" (*)\";\n   color: red;\n }\n .rs-radio-checker {\n  label:after {\n  content: none;\n }\n }"
+          }
+        },
+        "schema": {
+          "validations": [
+            {
+              "key": "required",
+              "args": {
+                "message": "Đây là trường bắt buộc!"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "reason",
+        "type": "RsTextArea",
+        "props": {
+          "label": {
+            "value": "Lý do"
+          },
+          "rows": {
+            "value": 3
+          }
+        }
+      },
+      {
+        "key": "RsContainer 2",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "alignItems": "center"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "RsButton 1",
+            "type": "RsButton",
+            "props": {
+              "children": {
+                "value": "Gửi"
+              }
+            },
+            "css": {
+              "any": {
+                "string": "background: #3498ff;\ncolor: whitesmoke;\nfont-weight: 700;"
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "20%"
+                }
+              }
+            },
+            "events": {
+              "onClick": [
+                {
+                  "name": "validate",
+                  "type": "common"
+                },
+                {
+                  "name": "onSubmit",
+                  "type": "custom"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [
+    {
+      "code": "en",
+      "dialect": "US",
+      "name": "English",
+      "description": "American English",
+      "bidi": "ltr"
+    }
+  ],
+  "defaultLanguage": "en-US"
+}

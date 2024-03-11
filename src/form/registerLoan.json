@@ -1,0 +1,338 @@
+{
+  "version": "1",
+  "actions": {
+    "getBranch": {
+      "body": "const [searchValue, loadCallback, currentDataLength] = e.args\n\n    fetch ('https://vapi.vnappmob.com/api/province/')\n        .then (data => data.json())\n        .then (data => {\n            const preparedData = data.results\n                // .filter(value => value.toLowerCase().includes(searchValue.toLowerCase()))\n                // .slice(currentDataLength, currentDataLength + 20)\n                .map(value => ({value:value.province_id, label: value.province_name}))\n\n            loadCallback(preparedData)        \n        })",
+      "params": {}
+    },
+    "openNewTab": {
+      "body": "window.open(\"https://www.w3schools.com\");",
+      "params": {}
+    }
+  },
+  "tooltipType": "RsTooltip",
+  "errorType": "RsErrorMessage",
+  "form": {
+    "key": "Screen",
+    "type": "Screen",
+    "props": {},
+    "children": [
+      {
+        "key": "RsHeader 1",
+        "type": "RsHeader",
+        "props": {
+          "content": {
+            "value": "Đăng ký vay vốn"
+          }
+        },
+        "css": {
+          "any": {
+            "object": {
+              "textAlign": "center"
+            }
+          }
+        }
+      },
+      {
+        "key": "RsContainer 1",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "flexDirection": "row"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "name",
+            "type": "RsInput",
+            "props": {
+              "label": {
+                "value": "Tên doanh nghiệp:"
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "50%"
+                }
+              }
+            }
+          },
+          {
+            "key": "code",
+            "type": "RsInput",
+            "props": {
+              "label": {
+                "value": "Mã số thuế:"
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "50%"
+                }
+              }
+            },
+            "schema": {
+              "validations": [
+                {
+                  "key": "required",
+                  "args": {
+                    "message": "Đây là trường bắt buộc"
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "key": "branch",
+        "type": "RsDropdown",
+        "props": {
+          "label": {
+            "value": "Chi nhánh:"
+          },
+          "data": {
+            "value": []
+          }
+        },
+        "events": {
+          "onLoadData": [
+            {
+              "name": "getBranch",
+              "type": "code"
+            }
+          ]
+        },
+        "schema": {
+          "validations": [
+            {
+              "key": "required",
+              "args": {
+                "message": "Đây là trường bắt buộc"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "key": "RsLabel 1",
+        "type": "RsLabel",
+        "props": {
+          "text": {
+            "value": "Ngày vay dự kiến:"
+          }
+        },
+        "wrapperCss": {
+          "any": {
+            "object": {
+              "marginBottom": "-5px"
+            }
+          }
+        }
+      },
+      {
+        "key": "RsContainer 4",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "flexDirection": "row"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "date",
+            "type": "RsDatePicker",
+            "props": {
+              "placeholder": {
+                "value": ""
+              },
+              "editable": {
+                "value": false
+              },
+              "cleanable": {
+                "value": true
+              },
+              "defaultOpen": {
+                "value": false
+              },
+              "disabled": {
+                "value": false
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "50%"
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "key": "RsContainer 3",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "flexDirection": "row"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "tenor",
+            "type": "RsRadioGroup",
+            "props": {
+              "label": {
+                "value": "Thời hạn vay:"
+              },
+              "items": {
+                "value": [
+                  {
+                    "value": "1",
+                    "label": "1 năm"
+                  },
+                  {
+                    "value": "2",
+                    "label": "2 năm"
+                  }
+                ]
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "50%"
+                }
+              }
+            },
+            "renderWhen": {
+              "value": "Boolean(form.data.date)"
+            }
+          }
+        ]
+      },
+      {
+        "key": "note",
+        "type": "RsTextArea",
+        "props": {
+          "label": {
+            "value": "Ghi chú (nếu có):"
+          }
+        }
+      },
+      {
+        "key": "Muilink 1",
+        "type": "Muilink",
+        "props": {
+          "children": {
+            "value": "Quy định điều khoản vay"
+          }
+        },
+        "events": {
+          "onClick": [
+            {
+              "name": "openNewTab",
+              "type": "code"
+            }
+          ]
+        }
+      },
+      {
+        "key": "isApprove",
+        "type": "RsCheckbox",
+        "props": {
+          "children": {
+            "value": "Chấp nhận điều khoản vay"
+          }
+        },
+        "schema": {
+          "validations": [
+            {
+              "key": "truthy",
+              "args": {
+                "message": "Đây là trường bắt buộc"
+              }
+            }
+          ],
+          "autoValidate": false
+        }
+      },
+      {
+        "key": "RsContainer 2",
+        "type": "RsContainer",
+        "props": {},
+        "css": {
+          "any": {
+            "object": {
+              "alignItems": "center"
+            }
+          }
+        },
+        "children": [
+          {
+            "key": "RsButton 1",
+            "type": "RsButton",
+            "props": {
+              "children": {
+                "value": "Đăng ký"
+              },
+              "disabled": {
+                "value": false
+              },
+              "readOnly": {
+                "value": false
+              }
+            },
+            "wrapperCss": {
+              "any": {
+                "object": {
+                  "width": "20%",
+                  "backgroundColor": "rgba(255, 255, 255, 0)"
+                }
+              }
+            },
+            "css": {
+              "any": {
+                "string": "background: #3498ff;\ncolor: whitesmoke;\nfont-weight: 700;"
+              }
+            },
+            "events": {
+              "onClick": [
+                {
+                  "name": "validate",
+                  "type": "common"
+                },
+                {
+                  "name": "onSubmit",
+                  "type": "custom"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "localization": {},
+  "languages": [
+    {
+      "code": "en",
+      "dialect": "US",
+      "name": "English",
+      "description": "American English",
+      "bidi": "ltr"
+    }
+  ],
+  "defaultLanguage": "en-US"
+}
